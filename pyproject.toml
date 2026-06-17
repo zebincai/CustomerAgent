@@ -1,0 +1,23 @@
+[project]
+name = "CustomerAgent"
+version = "0.0.1"
+description = "Add your description here"
+requires-python = "==3.12.*"
+dependencies = [
+    "PyYAML",
+    "loguru",
+    "dotenv",
+    "motor",
+    "pymongo",
+    "omegaconf",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff",
+    "pre-commit",
+]
+
+[tool.setuptools.packages.find]
+include = ["agent*"]
