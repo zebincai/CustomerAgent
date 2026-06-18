@@ -1,4 +1,16 @@
-# CustomerAgent
+---
+title: OmniHub
+emoji: 🚀
+colorFrom: blue
+colorTo: green
+sdk: docker
+python_version: 3.12
+suggested_hardware: cpu-basic
+suggested_storage: medium
+pinned: false
+---
+
+# CustomerAgent(OmniHub)
 
 CustomerAgent is a Python 3.12 project containing agent runtime utilities and local development tooling.
 
