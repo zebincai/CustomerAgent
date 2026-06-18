@@ -1,0 +1,26 @@
+name: Sync to Hugging Face Spaces
+
+on:
+  push:
+    branches: [ main, master] # 触发分支，通常是 main 或 master
+
+  # 允许手动触发
+  workflow_dispatch:
+
+jobs:
+  sync-to-hub:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          lfs: true # 如果你有大文件，开启 LFS
+
+      - name: Push to Hugging Face
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          artifacts/docker/Dockerfile Dockerfile
+          git remote add hf https://user:$HF_TOKEN@huggingface.co/spaces/zebin123/OmniHub
+          git push --force hf main
