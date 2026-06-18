@@ -27,7 +27,7 @@ jobs:
       - name: Scan Hugging Face SSH Host Keys
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan huggingface.co >> ~/.ssh/known_hosts
+          ssh-keyscan huggingface.co >> ~/.ssh/known_hosts || true
 
       - name: Push to Hugging Face
         env:
