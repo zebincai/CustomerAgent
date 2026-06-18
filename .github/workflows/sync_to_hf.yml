@@ -36,9 +36,8 @@ jobs:
           cp artifacts/docker/Dockerfile Dockerfile
           git config --global user.name "github-actions[bot]"
           git config --global user.email "1028798080@qq.com"
-          # 替换为你自己的用户名和 Space 仓库名 (注意是冒号 :spaces/)
+          export GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
           SSH_REPO_URL="git@huggingface.co:spaces/zebin123/OmniHub"
-          
           # 添加一个新的远程分支或覆盖 origin
           git remote set-url origin $SSH_REPO_URL
           git push origin master:main --force
