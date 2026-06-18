@@ -11,7 +11,8 @@ dependencies = [
     "pymongo",
     "omegaconf",
     "fastapi",
-    "uvicorn"
+    "uvicorn",
+    "requests"
 ]
 
 [project.optional-dependencies]
