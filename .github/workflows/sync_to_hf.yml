@@ -23,6 +23,6 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          artifacts/docker/Dockerfile Dockerfile
+          cp artifacts/docker/Dockerfile Dockerfile
           git remote add hf https://user:$HF_TOKEN@huggingface.co/spaces/zebin123/OmniHub
           git push --force hf main
