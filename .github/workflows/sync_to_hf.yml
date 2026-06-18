@@ -2,7 +2,9 @@ name: Sync to Hugging Face Spaces
 
 on:
   push:
-    branches: [ main, master] # 触发分支，通常是 main 或 master
+    branches:
+      - main
+      - master
 
   # 允许手动触发
   workflow_dispatch:
