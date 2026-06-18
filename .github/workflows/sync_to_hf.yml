@@ -18,28 +18,17 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true # 如果你有大文件，开启 LFS
-      # 2. 配置 SSH Agent 并加载私钥
-      - name: Install SSH Key
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.HF_SSH_PRIVATE_KEY }}
-      # 3. 将 Hugging Face 域名添加到 known_hosts，防止 SSH 首次连接时的交互式确认
-      - name: Scan Hugging Face SSH Host Keys
-        run: |
-          mkdir -p ~/.ssh
-          ssh-keyscan huggingface.co >> ~/.ssh/known_hosts || true
 
       - name: Push to Hugging Face
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          cp artifacts/docker/Dockerfile Dockerfile
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "zebin123"
           git config --global user.email "1028798080@qq.com"
-          export GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
-          SSH_REPO_URL="git@huggingface.co:spaces/zebin123/OmniHub"
-          # 添加一个新的远程分支或覆盖 origin
-          git remote set-url origin $SSH_REPO_URL
-          git push origin master:main --force
-          # git remote add hf https://user:$HF_TOKEN@huggingface.co/spaces/zebin123/OmniHub
-          # git push --force hf master:main
+          git config --global progress.sideband true
+          HTTPS_REPO_URL="https://zebin123:${HF_TOKEN}@huggingface.co/spaces/zebin123/OmniHub"
+          # 6. 修改远程仓库地址并强制推送到 main 分支
+          git remote set-url origin "$HTTPS_REPO_URL"
+          
+          echo "==== 开始通过 HTTPS Token 推送到 Hugging Face ===="
+          git push origin master:main --force --progress
