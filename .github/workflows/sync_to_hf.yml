@@ -25,4 +25,4 @@ jobs:
         run: |
           cp artifacts/docker/Dockerfile Dockerfile
           git remote add hf https://user:$HF_TOKEN@huggingface.co/spaces/zebin123/OmniHub
-          git push --force hf main
+          git push --force hf master:main
