@@ -1,0 +1,1 @@
+docker build -f artifacts/docker/Dockerfile -t omnihub:v1 .
